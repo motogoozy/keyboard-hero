@@ -22,9 +22,9 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 // ENDPOINTS
-app.get(`/api/paragraph/:paragraphId`, async (req, res) => {
-   const { paragraphId } = req.params;
+app.get(`/api/paragraph/:paragraph_id`, async (req, res) => {
+   const { paragraph_id } = req.params;
    const db = req.app.get('db');
-   const paragraphText = await db.get_paragraph({ paragraph_id: paragraphId });
+   const paragraphText = await db.get_paragraph({ paragraph_id });
    res.status(200).send(paragraphText);
 })
