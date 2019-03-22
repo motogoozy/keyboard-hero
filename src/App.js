@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import TypingTest from '../src/TypingTest/TypingTest';
+import TypingTest from '../src/components/TypingTest/TypingTest';
 
 class App extends Component {
   state = {
