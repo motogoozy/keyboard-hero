@@ -11,24 +11,22 @@ export default class TypingTest extends Component {
       time: 0,
       start: 0,
       isOn: false,
-      wordCount: 0,
    }
 
    componentDidMount = async () => {
       await this.getParagraph();
       const { originalText } = this.state;
-      await console.log(originalText.split(' ').length + ' words');
    }
 
    getParagraph = async () => {
-      const { originalText } = this.state;
       const paragraph_id = await Math.floor((Math.random() * 14) + 1); //Picks a random paragraph from database
       const res = await axios.get(`/api/paragraph/${paragraph_id}`);
-      await this.setState({ 
+      await this.setState({
          originalText: res.data[0].paragraph_text,
-         wordCount: originalText.split(' ').length,
       });
       await this.setState({ originalTextArray: this.state.originalText.split('') });
+      await console.log(this.state.originalText.split(' ').length + ' words')
+
    }
 
    handleInput = async (inputString) => {
@@ -38,7 +36,8 @@ export default class TypingTest extends Component {
       if (this.state.userInput.length === 1) {
          this.startTimer();
       } else if (this.state.userInput === this.state.originalText) {
-         this.stopTimer();      }
+         this.stopTimer();
+      }
    }
 
    startTimer = async () => {
@@ -54,14 +53,14 @@ export default class TypingTest extends Component {
    }
 
    stopTimer = async () => {
-      const { time, wordCount } = this.state;
+      const { time } = this.state;
+      let wordCount = this.state.originalText.split(' ').length;
       let seconds = time / 1000;
       let minutes = seconds / 60;
       let wpm = wordCount / minutes;
-      await this.setState({ isOn: false })
-      await clearInterval(this.timer)
-      console.log('timer stopped', seconds)
-      alert(wpm + ' words per minute')
+      await this.setState({ isOn: false });
+      console.log(wpm + ' words per minute')
+      await clearInterval(this.timer);
    }
 
    resetTimer = () => {
