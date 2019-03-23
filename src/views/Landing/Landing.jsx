@@ -9,7 +9,9 @@ export default class Landing extends Component {
             <h1>Welcome to Keyboard Hero!</h1>
             <p>Keyboard Hero is a typing challenge that tests both your typing speed and accuracy.</p>
             <p>Ready to begin?</p>
-            <Link to='/challenge'>Let's Go!</Link>
+            <div>
+               <Link to='/challenge' className='go-button'>Let's Go!</Link>
+            </div>
          </div>
       )
    }
