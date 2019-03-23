@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TypingTest.scss';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default class TypingTest extends Component {
    state = {
@@ -15,7 +16,6 @@ export default class TypingTest extends Component {
 
    componentDidMount = async () => {
       await this.getParagraph();
-      const { originalText } = this.state;
    }
 
    getParagraph = async () => {
@@ -59,7 +59,11 @@ export default class TypingTest extends Component {
       let minutes = seconds / 60;
       let wpm = wordCount / minutes;
       await this.setState({ isOn: false });
-      console.log(wpm + ' words per minute')
+      Swal.fire(
+         'Good job!',
+         'You typed ' + Math.floor(wpm) + ' words per minute!',
+         'success'
+      )
       await clearInterval(this.timer);
    }
 
@@ -90,7 +94,6 @@ export default class TypingTest extends Component {
       // Timer
       let seconds = time / 1000;
 
-
       return (
          <div className='typing-test'>
             <div className='text-window'>
@@ -102,9 +105,9 @@ export default class TypingTest extends Component {
             <textarea
                className='input-box'
                type='text'
+               placeholder='Start typing to begin test'
                onChange={(e) => this.handleInput(e.target.value)}
             >
-
             </textarea>
          </div>
       )
