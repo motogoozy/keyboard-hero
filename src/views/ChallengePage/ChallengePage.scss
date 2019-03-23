@@ -1,0 +1,41 @@
+.challenge-main {
+   height: 100vh;
+   width: 100vw;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: space-around;
+   align-items: center;
+   align-content: center;
+   background-image: url('../../assets/wpm-landing.jpg');
+   background-size: cover;
+   background-position: center;
+}
+
+.test-container {
+   width: 80vw;
+   height: 80vh;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: space-around;
+   align-items: center;
+   align-content: center;
+   background-color: rgba(255, 255, 255, 0.644);
+   z-index: 1;
+}
+
+.text-window {
+   width: 90%;
+   height: 50%;
+   font-size: 1.5em;
+   margin: 1.5rem;
+}
+
+.input-box {
+   width: 90%;
+   height: 50%;
+   margin: 1.5rem;
+   font-size: 1.5em;
+   text-align: center;
+}
