@@ -7,7 +7,7 @@ const { SERVER_PORT, CONNECTION_STRING } = process.env;
 // SERVER
 const app = express();
 
-// app.use( express.static( `${__dirname}/../build` ) );
+app.use( express.static( `${__dirname}/../build` ) );
 
 // MIDDLEWARE
 app.use(express.json());
