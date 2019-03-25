@@ -21,7 +21,7 @@ export default class TypingTest extends Component {
    }
 
    getParagraph = async () => {
-      const paragraph_id = await Math.floor((Math.random() * 14) + 1); //Picks a random paragraph from database
+      const paragraph_id = await Math.floor((Math.random() * 14) + 1); //Picks a random paragraph from database (There are currently 14 paragraphs stored in database)
       const res = await axios.get(`/api/paragraph/${paragraph_id}`);
       await this.setState({
          originalText: res.data[0].paragraph_text,
@@ -110,6 +110,7 @@ export default class TypingTest extends Component {
                type='text'
                placeholder='Start typing to begin test'
                onChange={(e) => this.handleInput(e.target.value)}
+               autoFocus
                style={{ borderRadius: '10px', padding: '10px' }}
             >
             </textarea>

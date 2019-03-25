@@ -10,6 +10,10 @@
    background-image: url('../../assets/wpm-landing.jpg');
    background-size: cover;
    background-position: center;
+
+   h1 {
+      text-shadow: 3px 3px rgb(56, 55, 55)
+   }
 }
 
 .test-container {
