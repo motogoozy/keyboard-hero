@@ -19,5 +19,22 @@
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
-	align-items: center;
+   align-items: center;
+   font-size: 1.5rem;
+   border: 1px solid black;
+   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.333);
+
+   input {
+      font-size: 1.5rem;
+   }
+}
+
+.modal-button {
+   font-size: 1.5rem;
+   width: 10rem;
+   background-color: rgba(49, 48, 48, 0.74);
+   border: 1px solid white;
+   border-radius: 13px;
+   margin: 1.5em 0;
+   color: white;
 }
