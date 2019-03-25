@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './TypingTest.scss';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import Modal from '../Modal/Modal';
 
 export default class TypingTest extends Component {
    state = {
@@ -12,6 +12,8 @@ export default class TypingTest extends Component {
       time: 0,
       start: 0,
       isOn: false,
+      wpm: 0,
+      showModal: false,
    }
 
    componentDidMount = async () => {
@@ -57,28 +59,23 @@ export default class TypingTest extends Component {
       let wordCount = this.state.originalText.split(' ').length;
       let seconds = time / 1000;
       let minutes = seconds / 60;
-      let wpm = wordCount / minutes;
-      await this.setState({ isOn: false });
-      await Swal.fire({
-         title: 'Good job!',
-         text: 'You typed ' + Math.floor(wpm) + ' words per minute!',
-         type: 'success',
-         showCancelButton: false,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Try again'
+      let wpm = Math.floor(wordCount / minutes);
+      await this.setState({
+         isOn: false,
+         wpm: wpm,
+         showModal: true,
       });
-      window.location.reload(); //refreshes page
    }
 
-   resetTimer = () => {
-      this.setState({ time: 0 })
+   reset = () => {
+      window.location.reload(); //refreshes page
    }
 
 
    render() {
       const { originalTextArray, userInput, time } = this.state;
       // Spell checking
+      // eslint-disable-next-line
       let displayParagraph = originalTextArray.map((letter, index) => {
          if (!userInput[index]) { //if user hasn't entered the character yet, letter will be gray
             return (
@@ -98,6 +95,7 @@ export default class TypingTest extends Component {
       // Timer
       let seconds = (time / 1000).toFixed(2); //limits number to 2 decimal places
 
+
       return (
          <div className='typing-test'>
             <div className='text-window'>
@@ -115,6 +113,14 @@ export default class TypingTest extends Component {
                style={{ borderRadius: '10px', padding: '10px' }}
             >
             </textarea>
+            {/* Render Modal once challenge is complete */}
+            {
+               this.state.showModal &&
+               <Modal
+                  wpm={this.state.wpm}
+                  reset={this.reset}
+               />
+            }
          </div>
       )
    }
