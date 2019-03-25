@@ -59,12 +59,16 @@ export default class TypingTest extends Component {
       let minutes = seconds / 60;
       let wpm = wordCount / minutes;
       await this.setState({ isOn: false });
-      Swal.fire(
-         'Good job!',
-         'You typed ' + Math.floor(wpm) + ' words per minute!',
-         'success'
-      )
-      await clearInterval(this.timer);
+      await Swal.fire({
+         title: 'Good job!',
+         text: 'You typed ' + Math.floor(wpm) + ' words per minute!',
+         type: 'success',
+         showCancelButton: false,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Try again'
+      });
+      window.location.reload(); //refreshes page
    }
 
    resetTimer = () => {
@@ -92,7 +96,7 @@ export default class TypingTest extends Component {
       })
 
       // Timer
-      let seconds = time / 1000;
+      let seconds = (time / 1000).toFixed(2); //limits number to 2 decimal places
 
       return (
          <div className='typing-test'>
@@ -100,13 +104,15 @@ export default class TypingTest extends Component {
                {displayParagraph}
             </div>
             <div>
-               <h3 style={{ width: '30px' }} >Time: {seconds}</h3>
+               <h3>Time:</h3>
+               <h3 style={{ width: '300px', letterSpacing: '1.5px', fontSize: '1.25rem' }} >{seconds}</h3>
             </div>
             <textarea
                className='input-box'
                type='text'
                placeholder='Start typing to begin test'
                onChange={(e) => this.handleInput(e.target.value)}
+               style={{ borderRadius: '10px', padding: '10px' }}
             >
             </textarea>
          </div>
