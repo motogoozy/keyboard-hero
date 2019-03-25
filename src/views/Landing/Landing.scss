@@ -8,9 +8,16 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   color: white;
+   text-shadow: 3px 3px rgb(56, 55, 55);
+   font-family: 'Karla', sans-serif;
 
    h1 {
       font-size: 4em;
+   }
+
+   h2 {
+      font-size: 2.5em;
    }
 
    p {
@@ -20,5 +27,15 @@
 }
 
 .go-button {
-   font-size: 3rem;
+   width: 14rem;
+   height: auto;
+   background-color: #313030a6;
+   border: 1px solid white;
+   border-radius: 13px;
+}
+
+.emphasize {
+   font-size: 2.5rem;
+   font-style: italic;
+   color: rgb(233, 176, 52);
 }

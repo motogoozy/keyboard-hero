@@ -6,11 +6,13 @@ export default class Landing extends Component {
    render() {
       return (
          <div className='landing-page'>
-            <h1>Welcome to Keyboard Hero!</h1>
-            <p>Keyboard Hero is a typing challenge that tests both your typing speed and accuracy.</p>
+            <h2>Welcome to</h2>
+            <h1>Keyboard Hero!</h1>
+            <br/>
+            <p>A typing challenge that tests both your typing <span className='emphasize' >speed</span> and <span className='emphasize' >accuracy</span>.</p>
             <p>Ready to begin?</p>
-            <div>
-               <Link to='/challenge' className='go-button'>Let's Go!</Link>
+            <div className='go-button'>
+               <Link to='/challenge' className='go-text' style={{ textDecoration: 'none', color: 'white', fontSize: '3rem' }}>Let's Go!</Link>
             </div>
          </div>
       )
