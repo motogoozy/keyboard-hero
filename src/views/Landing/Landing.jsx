@@ -11,9 +11,9 @@ export default class Landing extends Component {
             <br/>
             <p>A typing challenge that tests both your typing <span className='emphasize' >speed</span> and <span className='emphasize' >accuracy</span>.</p>
             <p>Ready to begin?</p>
-            <div className='go-button'>
-               <Link to='/challenge' className='go-text' style={{ textDecoration: 'none', color: 'white', fontSize: '3rem' }}>Let's Go!</Link>
-            </div>
+               <Link to='/challenge' className='go-text' style={{ textDecoration: 'none', color: 'white', fontSize: '3rem' }}>
+                  <div className="go-button">Let's Go!</div>
+               </Link>
          </div>
       )
    }
