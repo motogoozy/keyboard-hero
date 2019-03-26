@@ -7,7 +7,7 @@ const { SERVER_PORT, CONNECTION_STRING } = process.env;
 // SERVER
 const app = express();
 
-app.use( express.static( `${__dirname}/../build` ) );
+app.use( express.static( `${__dirname}/../build` ) ); //pointing server to front end static files
 
 // MIDDLEWARE
 app.use(express.json());
