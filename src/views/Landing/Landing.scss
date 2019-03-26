@@ -1,9 +1,6 @@
 .landing-page {
    width: 100vw;
    height: 100vh;
-   background-image: url('../../assets/wpm-landing.jpg');
-   background-size: cover;
-   background-position: center;
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -33,6 +30,11 @@
    border: 1px solid white;
    border-radius: 13px;
    letter-spacing: -.15rem;
+
+   &:hover {
+      cursor: pointer;
+      background-color: rgba(31, 31, 31, 0.815);
+   }
 }
 
 .emphasize {
