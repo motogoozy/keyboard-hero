@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Modal.scss';
 import axios from 'axios';
+import swal from 'sweetalert2';
 
 class Modal extends Component {
    state = {
@@ -11,13 +12,19 @@ class Modal extends Component {
    addScore = async () => {
       const { name } = this.state;
       const { wpm } = this.props;
-      let res = await axios.post(`/api/score`, ({ name: name, score: wpm }));
-      console.log(res.data.message)
+      if (name === '') {
+         swal.fire('Please enter your name')
+      } else {
+         let res = await axios.post(`/api/score`, ({ name: name, score: wpm }));
+         console.log(res.data.message)
+         this.props.history.push('/leaderboard')
+      }
    }
 
-   handleSubmit = async () => {
-      await this.addScore();
-      this.props.history.push('/leaderboard')
+   onKeyPress = (e) => {
+      if(e.which === 13) {
+         this.addScore();
+      }
    }
 
    render() {
@@ -31,11 +38,17 @@ class Modal extends Component {
                <button className='modal-button' onClick={() => this.props.reset()}>Try Again</button>
                <p>Enter your name to submit your score and see your rank!</p>
                <br />
-               <input onChange={(e) => this.setState({ name: e.target.value })} type="text" placeholder='Enter your name here' autoFocus />
+               <input
+                  type="text"
+                  placeholder='Enter your name here'
+                  autoFocus
+                  onChange={(e) => this.setState({ name: e.target.value })}
+                  onKeyPress={this.onKeyPress}
+               />
                <button
                   className='modal-button'
                   style={{ height: '4rem' }}
-                  onClick={() => this.handleSubmit()}
+                  onClick={() => this.addScore()}
                >Go to Leaderboard</button>
             </div>
          </div>
