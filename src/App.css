@@ -6,3 +6,16 @@
   background-size: cover;
   background-position: center;
 }
+
+footer {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+}
+
+footer > small {
+  position: fixed;
+  bottom: 4px;
+  right: 5px;
+  color: white;
+}
