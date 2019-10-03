@@ -5,4 +5,20 @@
   background-image: url(./assets/wpm-landing.jpg);
   background-size: cover;
   background-position: center;
+<<<<<<< HEAD
+=======
+}
+
+footer {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+}
+
+footer > small {
+  position: fixed;
+  bottom: 4px;
+  right: 5px;
+  color: white;
+>>>>>>> 69501d597a32050b6e926707cf4124d115c1f429
 }
