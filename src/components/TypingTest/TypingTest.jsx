@@ -14,33 +14,33 @@ export default class TypingTest extends Component {
       isOn: false,
       wpm: 0,
       showModal: false,
-   }
+   };
 
    componentDidMount = async () => {
       await this.getParagraph();
-   }
+   };
 
    getParagraph = async () => {
       const paragraph_id = await Math.floor((Math.random() * 14) + 1); //Picks a random paragraph from database (There are currently 14 paragraphs stored in database)
       const res = await axios.get(`/api/paragraph/${paragraph_id}`);
+      const paragraph = res.data[0].paragraph_text;
       await this.setState({
-         originalText: res.data[0].paragraph_text,
+         originalText: paragraph,
+         originalTextArray: paragraph.split('')
       });
-      await this.setState({ originalTextArray: this.state.originalText.split('') });
-      await console.log(this.state.originalText.split(' ').length + ' words')
-
-   }
+   };
 
    handleInput = async (inputString) => {
-      const { userInput } = this.state;
-      await this.setState({ userInput: inputString });
-      await this.setState({ userInputArray: userInput.split('') })
+      await this.setState({
+         userInput: inputString,
+         userInputArray: inputString.split('')
+      });
       if (this.state.userInput.length === 1) {
          this.startTimer();
       } else if (this.state.userInput === this.state.originalText) {
          this.stopTimer();
       }
-   }
+   };
 
    startTimer = async () => {
       await this.setState({
@@ -52,7 +52,7 @@ export default class TypingTest extends Component {
          time: Date.now() - this.state.start
       }), 1);
       await console.log('timer started')
-   }
+   };
 
    stopTimer = async () => {
       const { time } = this.state;
@@ -65,15 +65,15 @@ export default class TypingTest extends Component {
          wpm: wpm,
          showModal: true,
       });
-   }
+   };
 
    reset = () => {
       window.location.reload(); //refreshes page
-   }
+   };
 
 
    render() {
-      const { originalTextArray, userInput, time } = this.state;
+      const { originalTextArray, userInput, time, wpm, showModal } = this.state;
       // Spell checking
       // eslint-disable-next-line
       let displayParagraph = originalTextArray.map((letter, index) => {
@@ -95,7 +95,6 @@ export default class TypingTest extends Component {
       // Timer
       let seconds = (time / 1000).toFixed(2); //limits number to 2 decimal places
 
-
       return (
          <div className='typing-test'>
             <div className='text-window'>
@@ -116,9 +115,10 @@ export default class TypingTest extends Component {
             </textarea>
             {/* Render Modal once challenge is complete */}
             {
-               this.state.showModal &&
+               showModal
+               &&
                <Modal
-                  wpm={this.state.wpm}
+                  wpm={wpm}
                   reset={this.reset}
                />
             }
