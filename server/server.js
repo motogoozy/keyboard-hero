@@ -1,6 +1,7 @@
-require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
+const path = require('path');
+require('dotenv').config();
 
 const { SERVER_PORT, CONNECTION_STRING } = process.env;
 
@@ -22,7 +23,6 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 // ENDPOINTS
-
 // Get paragraph
 app.get(`/api/paragraph/:paragraph_id`, async (req, res) => {
    const { paragraph_id } = req.params;
@@ -45,3 +45,8 @@ app.get('/api/score', async (req, res) => {
    const scores = await db.get_scores();
    res.status(200).send(scores)
 })
+
+// CATCH
+app.get('*', (req, res)=>{
+   res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
