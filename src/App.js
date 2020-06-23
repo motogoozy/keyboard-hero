@@ -10,7 +10,7 @@ class App extends Component {
           { routes }
         </div>
         <footer>
-          <small>&copy; 2019, Kyle Payne | All Rights Reserved</small>
+          <small>Copyright &copy; Kyle Payne {new Date().getFullYear()}</small>
         </footer>
       </div>
     );
